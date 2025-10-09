@@ -13,12 +13,11 @@ var Ctx = context.Background()
 func ConnectRedis() *redis.Client {
 	// ✅ assign the created client to the global variable
 	REDIS = redis.NewClient(&redis.Options{
-		Addr:     "redis-server:6379", // for Docker: service name
-		Password: "",                  // no password
-		DB:       0,                   // default DB
+		Addr:     "localhost:6379",
+		Password: "", // no password
+		DB:       0,  // default DB
 	})
 
-	// ✅ test connection
 	_, err := REDIS.Ping(Ctx).Result()
 	if err != nil {
 		log.Fatalf("❌ Failed to connect Redis: %v", err)
